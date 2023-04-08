@@ -15,11 +15,8 @@ const AddItemForm = () => {
 
     const form = formRef.current;
     console.log(form);
-  
-    const formControls = Array.from(form.elements);
-    console.log(formControls)
-
-    formControls.forEach(({ name, type, value, files, ...element }) => {
+    
+    form.elements.forEach(({ name, type, value, files, ...element }) => {
       if (!["submit", "file"].includes(type)) {
         data[name] = value;
       } else if (type === "file") {
@@ -32,7 +29,6 @@ const AddItemForm = () => {
     form.append("data", JSON.stringify(data));
     const out = Object.fromEntries(formData.entries());
     console.log(out);
-
 
     //  axios
     //     .post("http://localhost:1337/api/products", { data: formData })
